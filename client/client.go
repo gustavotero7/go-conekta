@@ -77,6 +77,7 @@ func (c *client) send(method, path string, v interface{}) ([]byte, error) {
 	req.Header.Add("content-type", "application/json")
 	req.SetBasicAuth(c.apiKey, "")
 
+	log.Printf("Calling %s\n", req.URL.String())
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return nil, err
@@ -101,5 +102,4 @@ func (c *client) send(method, path string, v interface{}) ([]byte, error) {
 // For now this is only used for testing purposes
 func SetClientURL(apiURL string) {
 	getClient().apiURL = apiURL
-	log.Println("Client mocked")
 }

@@ -10,7 +10,7 @@ type Order struct {
 	DiscountLines   []DiscountLine   `json:"discount_lines,omitempty"`
 	PreAuthorize    *bool            `json:"pre_authorize,omitempty"`
 	ShippingContact *ShippingContact `json:"shipping_contact,omitempty"`
-	Amunt           float64          `json:"amount,omitempty"`
+	Amount          float64          `json:"amount,omitempty"`
 	Reason          string           `json:"reason,omitempty"`
 	AmountRefunded  float64          `json:"amount_refunded,omitempty"`
 	PaymentStatus   string           `json:"payment_status,omitempty"`

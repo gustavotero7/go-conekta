@@ -2,6 +2,7 @@ package customers
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 	"net/http/httptest"
 	"reflect"
@@ -26,14 +27,14 @@ func TestCreate(t *testing.T) {
 		useStatus   int
 		useResponse interface{}
 		name        string
-		want        *models.ConektaResponse
+		want        *models.Customer
 		wantErr     bool
 	}{
 		{
 			name:        "OK",
 			useStatus:   200,
-			useResponse: models.ConektaResponse{},
-			want:        &models.ConektaResponse{},
+			useResponse: models.Customer{},
+			want:        &models.Customer{},
 			wantErr:     false,
 		},
 		{
@@ -73,14 +74,14 @@ func TestUpdate(t *testing.T) {
 		useStatus   int
 		useResponse interface{}
 		name        string
-		want        *models.ConektaResponse
+		want        *models.Customer
 		wantErr     bool
 	}{
 		{
 			name:        "OK",
 			useStatus:   200,
-			useResponse: models.ConektaResponse{},
-			want:        &models.ConektaResponse{},
+			useResponse: models.Customer{},
+			want:        &models.Customer{},
 			wantErr:     false,
 		},
 		{
@@ -119,14 +120,14 @@ func TestDelete(t *testing.T) {
 		useStatus   int
 		useResponse interface{}
 		name        string
-		want        *models.ConektaResponse
+		want        *models.Customer
 		wantErr     bool
 	}{
 		{
 			name:        "OK",
 			useStatus:   200,
-			useResponse: models.ConektaResponse{},
-			want:        &models.ConektaResponse{},
+			useResponse: models.Customer{},
+			want:        &models.Customer{},
 			wantErr:     false,
 		},
 		{
@@ -487,4 +488,66 @@ func TestDeletePaymentSource(t *testing.T) {
 			}
 		})
 	}
+}
+
+func ExampleCreate() {
+	// You only need to set client.APIKey once (then you can do all the calls you want with customer or orders packages)
+	client.APIKey = "your_conekta_private_key"
+
+	// Only name and email are mandatory fields, other fields are optional
+	// See https://developers.conekta.com/api?language=bash#create-customer
+	customer, err := Create(models.Customer{
+		Name:  "Fulano Perez",
+		Email: "fulano@example.com",
+		Phone: "+5215555555555",
+	})
+
+	// Handle error
+	if err != nil {
+		log.Println("Err: ", err)
+		return
+	}
+
+	// Do something with the response
+	log.Println("Response: ", customer)
+}
+
+func ExampleUpdate() {
+	// You only need to set client.APIKey once (then you can do all the calls you want with customer or orders packages)
+	client.APIKey = "your_conekta_private_key"
+
+	// Only id, name and email are mandatory fields, other fields are optional
+	// See https://developers.conekta.com/api?language=bash#update-customer
+	customer, err := Update(models.Customer{
+		ID:    "cus_123456789",
+		Name:  "New Name",
+		Email: "new@email.com",
+		Phone: "+5215555555555",
+	})
+
+	// Handle error
+	if err != nil {
+		log.Println("Err: ", err)
+		return
+	}
+
+	// Do something with the response
+	log.Println("Response: ", customer)
+}
+
+func ExampleDelete() {
+	// You only need to set client.APIKey once (then you can do all the calls you want with customer or orders packages)
+	client.APIKey = "your_conekta_private_key"
+
+	// See https://developers.conekta.com/api?language=bash#update-customer
+	customer, err := Delete("cus_123456789")
+
+	// Handle error
+	if err != nil {
+		log.Println("Err: ", err)
+		return
+	}
+
+	// Do something with the response
+	log.Println("Response: ", customer)
 }

@@ -1,0 +1,15 @@
+image: golang
+
+stages:
+  - test
+
+before_script:
+  - mkdir -p /go/src/github.com
+  - ln -s /builds/gustavotero7 /go/src/github.com/gustavotero7
+
+coverage:
+  stage: test
+  script:
+    - cd /go/src/github.com/gustavotero7/go-conekta
+    - go get ./...
+    - go test $(go list ./... | grep -v /vendor/) -v -coverprofile .testCoverage.txt

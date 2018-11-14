@@ -214,3 +214,52 @@ func TestOrderRefund(t *testing.T) {
 		})
 	}
 }
+
+func TestCreateCharge(t *testing.T) {
+	tests := []struct {
+		useStatus       int
+		useResponse     interface{}
+		name            string
+		wantNilResponse bool
+		wantErr         bool
+	}{
+		{
+			name:            "OK",
+			useStatus:       200,
+			useResponse:     models.Charge{},
+			wantNilResponse: false,
+			wantErr:         false,
+		},
+		{
+			name:            "Bad status code (Not 200)",
+			useStatus:       400,
+			useResponse:     nil,
+			wantNilResponse: true,
+			wantErr:         true,
+		},
+		{
+			name:            "Invalid response body (int instead Charge struct)",
+			useStatus:       200,
+			useResponse:     0,
+			wantNilResponse: true,
+			wantErr:         true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			server := s(tt.useStatus, tt.useResponse)
+			client.SetClientURL(server.URL)
+
+			got, err := CreateCharge("order_id", models.Charge{})
+			if (err != nil) != tt.wantErr {
+				t.Errorf("order.Refund() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+
+			if (got == nil) != tt.wantNilResponse {
+				t.Errorf("order.Refund() got = %v, wantNilResponse %v", err, tt.wantErr)
+				return
+			}
+		})
+	}
+}
