@@ -1,6 +1,8 @@
 package models
 
 type Customer struct {
+	ConektaBase
+	ID                       string            `json:"id,omitempty"`
 	CustomerID               string            `json:"customer_id,omitempty"`
 	Name                     string            `json:"name,omitempty"`
 	Phone                    string            `json:"phone,omitempty"`
