@@ -1,12 +1,12 @@
 package models
 
 type PaymentMethod struct {
+	ConektaBase
 	Type                   string  `json:"type,omitempty"`
 	TokenId                string  `json:"token_id,omitempty"`
 	PaymentSourceID        string  `json:"payment_source_id,omitempty"`
 	ServiceName            string  `json:"service_name,omitempty"`
 	BarcodeURL             string  `json:"barcode_url,omitempty"`
-	Object                 string  `json:"object,omitempty"`
 	ExpiresAt              int64   `json:"expires_at,omitempty"`
 	StoreName              string  `json:"store_name,omitempty"`
 	Reference              string  `json:"reference,omitempty"`

@@ -1,6 +1,6 @@
 
 ### Go-Conekta
-A Wrapper for use conekta's api v2 in golang based in [sait/go-conekta](https://github.com/sait/go-conekta)
+A Wrapper for use conekta's api v2 in golang inspired in [sait/go-conekta](https://github.com/sait/go-conekta)
 
 This tutorial assumes the next:
 
@@ -20,15 +20,46 @@ Import in your project
 
 ```go
 import (
-    "github.com/gustavotero7/go-conekta/conekta"
+    "github.com/gustavotero7/go-conekta/client"
+	"github.com/gustavotero7/go-conekta/customers"
+	"github.com/gustavotero7/go-conekta/models"
 )
 ```
 
 ### Simple Order Example
 
 ```go
-// TODO Example
+package main
+
+import (
+	"log"
+
+	"github.com/gustavotero7/go-conekta/client"
+	"github.com/gustavotero7/go-conekta/customers"
+	"github.com/gustavotero7/go-conekta/models"
+)
+
+func main() {
+	client.APIKey = "your_private_key"
+	customer, err := customers.Create(models.Customer{
+		Name:  "Fulano Perez",
+		Email: "fulano@example.com",
+		Phone: "+5215555555555",
+	})
+	if err != nil {
+		log.Println("Err: ", err)
+		return
+	}
+	log.Println("Response: ", customer)
+
+	// customers.Update(models.Customer{})
+	// customers.Delete("customer_id")
+	// customers.CreatePaymentSource("customer_id", models.PaymentSource{})
+	// orders.Create(models.Order{})
+	// ...
+}
 ```
+**You only need to set client.APIKey once**
 
 ### Resources
 
