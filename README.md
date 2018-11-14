@@ -1,4 +1,7 @@
 
+
+[![pipeline status](https://gitlab.com/gustavotero7/go-conekta/badges/feature/setup-ci/pipeline.svg)](https://gitlab.com/gustavotero7/go-conekta/commits/feature/setup-ci) [![coverage report](https://gitlab.com/gustavotero7/go-conekta/badges/feature/setup-ci/coverage.svg)](https://gitlab.com/gustavotero7/go-conekta/commits/feature/setup-ci)
+
 ### Go-Conekta
 A Wrapper for use conekta's api v2 in golang inspired in [sait/go-conekta](https://github.com/sait/go-conekta)
 

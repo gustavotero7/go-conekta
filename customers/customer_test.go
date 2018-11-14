@@ -26,14 +26,14 @@ func TestCreate(t *testing.T) {
 		useStatus   int
 		useResponse interface{}
 		name        string
-		want        *models.ConektaResponse
+		want        *models.Customer
 		wantErr     bool
 	}{
 		{
 			name:        "OK",
 			useStatus:   200,
-			useResponse: models.ConektaResponse{},
-			want:        &models.ConektaResponse{},
+			useResponse: models.Customer{},
+			want:        &models.Customer{},
 			wantErr:     false,
 		},
 		{
@@ -73,14 +73,14 @@ func TestUpdate(t *testing.T) {
 		useStatus   int
 		useResponse interface{}
 		name        string
-		want        *models.ConektaResponse
+		want        *models.Customer
 		wantErr     bool
 	}{
 		{
 			name:        "OK",
 			useStatus:   200,
-			useResponse: models.ConektaResponse{},
-			want:        &models.ConektaResponse{},
+			useResponse: models.Customer{},
+			want:        &models.Customer{},
 			wantErr:     false,
 		},
 		{
@@ -119,14 +119,14 @@ func TestDelete(t *testing.T) {
 		useStatus   int
 		useResponse interface{}
 		name        string
-		want        *models.ConektaResponse
+		want        *models.Customer
 		wantErr     bool
 	}{
 		{
 			name:        "OK",
 			useStatus:   200,
-			useResponse: models.ConektaResponse{},
-			want:        &models.ConektaResponse{},
+			useResponse: models.Customer{},
+			want:        &models.Customer{},
 			wantErr:     false,
 		},
 		{

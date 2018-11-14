@@ -16,10 +16,12 @@ func MockClient(apiURL string) {
 }
 
 var (
-	s = httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(200)
-		w.Write([]byte("Hi"))
-	}))
+	s = func() *httptest.Server {
+		return httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			w.WriteHeader(200)
+			w.Write([]byte("Hi"))
+		}))
+	}
 )
 
 func Test_getClient(t *testing.T) {
@@ -55,7 +57,7 @@ func TestGet(t *testing.T) {
 	}{
 		{
 			name:    "OK",
-			url:     s.URL,
+			url:     s().URL,
 			path:    "/",
 			want:    []byte("Hi"),
 			wantErr: false,
@@ -68,15 +70,8 @@ func TestGet(t *testing.T) {
 			wantErr: true,
 		},
 		{
-			name:    "No server",
-			url:     "http://xxx.xxx.xxx",
-			path:    "/",
-			want:    nil,
-			wantErr: true,
-		},
-		{
 			name:    "Bad path",
-			url:     s.URL,
+			url:     s().URL,
 			path:    "%s%s",
 			want:    nil,
 			wantErr: true,
@@ -108,7 +103,7 @@ func TestPost(t *testing.T) {
 	}{
 		{
 			name:    "OK",
-			url:     s.URL,
+			url:     s().URL,
 			path:    "/",
 			body:    map[string]string{"hakuna": "matata"},
 			want:    []byte("Hi"),
@@ -116,7 +111,7 @@ func TestPost(t *testing.T) {
 		},
 		{
 			name:    "Invalid body",
-			url:     s.URL,
+			url:     s().URL,
 			path:    "/",
 			body:    Post,
 			want:    nil,
@@ -149,7 +144,7 @@ func TestPut(t *testing.T) {
 	}{
 		{
 			name:    "OK",
-			url:     s.URL,
+			url:     s().URL,
 			path:    "/",
 			body:    map[string]string{"hakuna": "matata"},
 			want:    []byte("Hi"),
@@ -157,7 +152,7 @@ func TestPut(t *testing.T) {
 		},
 		{
 			name:    "Invalid body",
-			url:     s.URL,
+			url:     s().URL,
 			path:    "/",
 			body:    Put,
 			want:    nil,
@@ -189,7 +184,7 @@ func TestDelete(t *testing.T) {
 	}{
 		{
 			name:    "OK",
-			url:     s.URL,
+			url:     s().URL,
 			path:    "/",
 			want:    []byte("Hi"),
 			wantErr: false,
