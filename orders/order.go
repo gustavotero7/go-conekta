@@ -11,13 +11,13 @@ import (
 const basePath = "/orders"
 
 // Create Creates a new Order
-func Create(order models.Order) (*models.Order, error) {
+func Create(order models.Order) (*models.OrderResponse, error) {
 	response, err := client.Post(basePath, order)
 	if err != nil {
 		return nil, err
 	}
 
-	var cr models.Order
+	var cr models.OrderResponse
 	if err := json.Unmarshal(response, &cr); err != nil {
 		return nil, err
 	}
@@ -39,13 +39,13 @@ func Update(order models.Order) (*models.Order, error) {
 }
 
 // Capture Process a pre-authorized order.
-func Capture(orderID string) (*models.Order, error) {
+func Capture(orderID string) (*models.OrderResponse, error) {
 	response, err := client.Post(fmt.Sprintf("%s/%s/capture", basePath, orderID), nil)
 	if err != nil {
 		return nil, err
 	}
 
-	var cr models.Order
+	var cr models.OrderResponse
 	if err := json.Unmarshal(response, &cr); err != nil {
 		return nil, err
 	}
@@ -59,13 +59,13 @@ func Capture(orderID string) (*models.Order, error) {
 //	duplicated_transaction
 //	suspected_fraud
 //	other
-func Refund(order models.Order) (*models.Order, error) {
+func Refund(order models.Order) (*models.OrderResponse, error) {
 	response, err := client.Post(fmt.Sprintf("%s/%s/refunds", basePath, order.ID), order)
 	if err != nil {
 		return nil, err
 	}
 
-	var cr models.Order
+	var cr models.OrderResponse
 	if err := json.Unmarshal(response, &cr); err != nil {
 		return nil, err
 	}

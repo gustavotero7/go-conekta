@@ -17,3 +17,10 @@ type Order struct {
 	CustomerInfo    Customer         `json:"customer_info,omitempty"`
 	Charges         []Charge         `json:"charges,omitempty"`
 }
+
+type OrderResponse struct {
+	ConektaBase
+	Order
+	LineItems LineItems `json:"line_items,omitempty"`
+	Charges   Charges   `json:"charges,omitempty"`
+}
