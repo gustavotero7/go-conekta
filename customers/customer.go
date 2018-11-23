@@ -3,7 +3,6 @@ package customers
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 
 	"github.com/gustavotero7/go-conekta/client"
 	"github.com/gustavotero7/go-conekta/models"
@@ -17,8 +16,6 @@ func Create(customer models.Customer) (*models.Customer, error) {
 	if err != nil {
 		return nil, err
 	}
-
-	log.Println(string(response))
 
 	var cr models.Customer
 	if err := json.Unmarshal(response, &cr); err != nil {
