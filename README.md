@@ -1,4 +1,4 @@
-[![pipeline status](https://gitlab.com/gustavotero7/go-conekta/badges/develop/pipeline.svg)](https://gitlab.com/gustavotero7/go-conekta/commits/develop) [![coverage report](https://gitlab.com/gustavotero7/go-conekta/badges/develop/coverage.svg)](https://gitlab.com/gustavotero7/go-conekta/commits/develop)
+[![pipeline status](https://gitlab.com/gustavotero7/go-conekta/badges/develop/pipeline.svg)](https://gitlab.com/gustavotero7/go-conekta/commits/develop) [![coverage report](https://gitlab.com/gustavotero7/go-conekta/badges/develop/coverage.svg)](https://gitlab.com/gustavotero7/go-conekta/commits/develop) [![Go Report Card](https://goreportcard.com/badge/github.com/gustavotero7/go-conekta)](https://goreportcard.com/report/github.com/gustavotero7/go-conekta)
 
 ### Go-Conekta
 A Wrapper for use conekta's api v2 in golang inspired in [sait/go-conekta](https://github.com/sait/go-conekta)
