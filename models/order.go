@@ -21,6 +21,7 @@ type Order struct {
 type OrderResponse struct {
 	ConektaBase
 	Order
-	LineItems LineItems `json:"line_items,omitempty"`
-	Charges   Charges   `json:"charges,omitempty"`
+	LineItems     LineItems     `json:"line_items,omitempty"`     // Overwrite Order.LineItems
+	Charges       Charges       `json:"charges,omitempty"`        // Overwrite Order.Charges
+	ShippingLines ShippingLines `json:"shipping_lines,omitempty"` // Overwrite Order.ShippingLines
 }
